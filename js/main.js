@@ -1,0 +1,146 @@
+const cabecera = document.querySelector('header')
+
+const galeria = document.querySelector('#galeria')
+
+
+const imagenesCabecera = [{
+        src: 'assets/banner/1.jpg',
+        title: 'foto 1',
+        descripcion: 'Esta es la descripción',
+        alt: 'Este es el alt de foto 1'
+
+    },
+    {
+        src: 'assets/banner/2.jpg',
+        title: 'foto 2',
+        descripcion: 'Esta es la descripción',
+        alt: 'Este es el alt de foto 2'
+
+    },
+    {
+        src: 'assets/banner/3.jpg',
+        title: 'foto 3',
+        descripcion: 'Esta es la descripción',
+        alt: 'Este es el alt de foto 3'
+
+    },
+    {
+        src: 'assets/banner/4.jpg',
+        title: 'foto 4',
+        descripcion: 'Esta es la descripción',
+        alt: 'Este es el alt de foto 4'
+
+    },
+    {
+        src: 'assets/banner/5.jpg',
+        title: 'foto 5',
+        descripcion: 'Esta es la descripción',
+        alt: 'Este es el alt de foto 5'
+
+    },
+    {
+        src: 'assets/banner/6.jpg',
+        title: 'foto 6',
+        descripcion: 'Esta es la descripción',
+        alt: 'Este es el alt de foto 6'
+
+    }
+  ];
+
+
+const imagenesGaleria = [
+    {
+        src: 'assets/viajes/viajes-1.jpg',
+        title: 'foto 1',
+        descripcion: 'Esta es la descripción',
+        alt: 'Este es el alt de foto 1'
+
+    },
+    {
+        src: 'assets/viajes/viajes-2.jpg',
+        title: 'foto 2',
+        descripcion: 'Esta es la descripción',
+        alt: 'Este es el alt de foto 2'
+
+    },
+    {
+        src: 'assets/viajes/viajes-3.jpg',
+        title: 'foto 3',
+        descripcion: 'Esta es la descripción',
+        alt: 'Este es el alt de foto 3'
+
+    },
+    {
+        src: 'assets/viajes/viajes-4.jpg',
+        title: 'foto 4',
+        descripcion: 'Esta es la descripción',
+        alt: 'Este es el alt de foto 4'
+
+    },
+    {
+        src: 'assets/viajes/viajes-5.jpg',
+        title: 'foto 5',
+        descripcion: 'Esta es la descripción',
+        alt: 'Este es el alt de foto 5'
+
+    },
+    {
+        src: 'assets/viajes/viajes-6.jpg',
+        title: 'foto 6',
+        descripcion: 'Esta es la descripción',
+        alt: 'Este es el alt de foto 6'
+
+    }
+  
+]
+
+
+
+const numeroAleatorio= Math.floor(Math.random() * imagenesCabecera.length-1) + 1
+
+//console.log(numeroAleatorio);
+//console.log(cabecera);
+//console.log(galeria);
+
+// document.createElement(nombreEtiqueta);
+// elemento.setAttribute('attributo','valor')
+// referencia.append("elemento");
+
+function crearImagen (arrayImagenes){
+  const imagen = document.createElement('img')
+  imagen.setAttribute('title', arrayImagenes[numeroAleatorio].title)
+  imagen.setAttribute('src', arrayImagenes[numeroAleatorio].src)
+  imagen.setAttribute('alt', arrayImagenes[numeroAleatorio].alt)
+  cabecera.append(imagen)
+}
+
+
+
+function crearGaleria (arrayImagenes) {
+    
+    for (const imagen of arrayImagenes){
+        
+        const contenedor = document.createElement('article')
+        const divImagen =  document.createElement('div')
+        const img = document.createElement('img')
+        const titulo = document.createElement('h2')
+        const descripcion = document.createElement('p')
+        
+        img.setAttribute('title', imagen.title)
+        img.setAttribute('src', imagen.src)
+        img.setAttribute('alt', imagen.alt)
+        divImagen.append(img)
+        contenedor.append(divImagen)
+
+        titulo.textContent= imagen.title
+        contenedor.append(titulo)
+        descripcion.textContent= imagen.descripcion
+        contenedor.append(descripcion)
+
+        galeria.append(contenedor)
+    } 
+
+}
+
+crearImagen(imagenesCabecera)
+crearGaleria(imagenesGaleria)

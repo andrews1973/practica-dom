@@ -1,0 +1,36 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+#galeria {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+@media (min-width: 768px) {
+    #galeria {
+        grid-template-columns: 1fr 1fr;
+        justify-items: left;
+    }
+}
+
+@media (min-width: 992px) {
+    #galeria {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+}
+
+
+@media (min-width: 1200px) {}
