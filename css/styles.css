@@ -190,6 +190,18 @@ h1 {
     animation-delay: 1s;
 }
 
+footer {
+    background-color: #000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+footer p {
+    margin: 0;
+}
+
 /* mediaquerys */ 
 
 @media (min-width: 768px) {
