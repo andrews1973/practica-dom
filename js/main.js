@@ -1,3 +1,31 @@
+/*
+pseudocodigo:
+
+- Seleccionar los elementos header y galeria del HTML.
+- Crear dos arrays con los datos de las imágenes.
+
+Función para crear la imagen del header (aleatoria)
+- Comprobar si el array está vacío. Si lo está, mostrar un mensaje y finalizar.
+- llamar a la funcion que genera un número aleatorio.
+- Seleccionar una imagen del array.
+- Comprobar si existe etiqueta imagen en el header.
+- Si no existe, crearla y añadirla.
+- Asignar la ruta, el título y el texto alternativo como atributos a la etiqueta img.
+
+Función para crear la galeria de imagens
+- Comprobar si el array está vacío. Si lo está, mostrar un mensaje y finalizar.
+- Recorrer el array con un bucle.
+- Crear para cada imagen un article, un div, una imagen, un título y una descripción.
+- Asignar los atributos a la imagen.
+- Añadir cada elemento dentro del correspondiente y finalmente el article a la galería.
+
+Función para crear un numero aleatorio
+- Generar y devolver un número entero aleatorio entre 0 y elementos del array.
+
+llamar a las funciones de crear imagen y galeria.
+*/
+
+
 const cabecera = document.querySelector("header");
 
 const galeria = document.querySelector("#galeria");
@@ -98,19 +126,44 @@ const imagenesGaleria = [
     },
 ];
 
-// floor para hacerlo entero, imagenesCabecera.length = 8, numero entero entre 0 y 7
-// console.log(imagenesCabecera.length);
 
 function crearImagen(arrayImagenes) {
-    const numeroAleatorio = Math.floor(Math.random() * imagenesCabecera.length);
-    const imagen = document.createElement("img");
-    imagen.setAttribute("title", arrayImagenes[numeroAleatorio].title); // con set atribute
-    imagen.setAttribute("src", arrayImagenes[numeroAleatorio].src);
-    imagen.setAttribute("alt", arrayImagenes[numeroAleatorio].alt);
-    cabecera.append(imagen);
+    
+    // Comprobamos que el array tenga imágenes si no escribimos un mensaje
+    if (arrayImagenes.length === 0) {
+        galeria.textContent = 'No hay imágenes disponibles.';
+        return;
+    } 
+
+    const numeroAleatorio = crearNumeroAleatorio (imagenesCabecera.length) // llamamos a la funcion para crear el aleatorio
+    const imagen = document.querySelector('header > img'); // seleccionamos del html la etiqueta imagen
+
+    if (!imagen) {
+        imagen = document.createElement('img'); // si no existe la creamos
+        cabecera.append(imagen); // Añadimos la imagen al header
+    }
+
+    const imagenSeleccionada = arrayImagenes[numeroAleatorio];
+
+    /*
+        imagen.setAttribute("src", imagenSeleccionada.src);
+        imagen.setAttribute("title", imagenSeleccionada.title); 
+        imagen.setAttribute("alt", imagenSeleccionada.alt);
+    */
+
+    imagen.src = imagenSeleccionada.src;
+    imagen.title = imagenSeleccionada.title;
+    imagen.alt = imagenSeleccionada.alt;
+
 }
 
 function crearGaleria(arrayImagenes) {
+    // Comprobamos que el array tenga imágenes si no escribimos un mensaje
+    if (arrayImagenes.length === 0) {
+        cabecera.textContent = 'No hay imágenes disponibles.';
+        return;
+    } 
+
     for (const imagen of arrayImagenes) {
         const contenedor = document.createElement("article");
         const divImagen = document.createElement("div");
@@ -121,6 +174,7 @@ function crearGaleria(arrayImagenes) {
         img.title = imagen.title; // directamente con la propiedad
         img.src = imagen.src;
         img.alt = imagen.alt;
+
         divImagen.append(img);
         contenedor.append(divImagen);
 
@@ -131,6 +185,12 @@ function crearGaleria(arrayImagenes) {
 
         galeria.append(contenedor);
     }
+}
+
+// floor para hacerlo entero, imagenesCabecera.length = 8, numero entero entre 0 y 7
+
+function crearNumeroAleatorio (numFinal){
+    return Math.floor(Math.random() * numFinal);
 }
 
 crearImagen(imagenesCabecera);
