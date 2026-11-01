@@ -1,4 +1,3 @@
-
 *,
 *::before,
 *::after {
@@ -10,7 +9,7 @@
 /*Mobile first*/
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     background-color: #f4f6f8;
     color: #333333;
     line-height: 1.6;
@@ -22,7 +21,10 @@ img {
 }
 
 header {
-    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
 header img {
@@ -30,32 +32,40 @@ header img {
     height: 12rem;
     object-fit: cover;
     box-shadow: 0px 10px 10px #6c6c6c55;
+    animation: aparecerDesdeArriba 1.5s ease both;
+}
+
+header h1 {
+    position: absolute;
+    z-index: 100;
+    color: white;
+    text-shadow: 0 0 15px black;
+    font-size: 1.75rem;
+    font-weight: 600;
+    animation: fundido 2.5s ease both;
+}
+
+/* subrayado amarillo de del h1*/
+
+h1::after, h2::after {
+    content: "";
+    display: block;
+    width: 4rem;
+    height: 0.25rem;
+    margin: 0.5rem auto 0;
+    background-color: #e6a23c;
+    border-radius: 0.5rem;
+}
+
+h2::after {
+    margin: 0.3rem 0 1rem 0;
+    transition: width 0.4s ease-in-out;
 }
 
 section {
     max-width: 75rem;
     margin: 0 auto;
     padding: 2rem 1rem;
-}
-
-h1 {
-    margin-bottom: 2rem;
-    text-align: center;
-    font-size: 2rem;
-    color: #26384a;
-    font-weight: 600;
-}
-
-/* subrayado amarillo de del h1*/
-
-h1::after {
-    content: "";
-    display: block;
-    width: 4rem;
-    height: 0.25rem;
-    margin: 0.75rem auto 0;
-    background-color: #e6a23c;
-    border-radius: 1rem;
 }
 
 #galeria {
@@ -66,11 +76,11 @@ h1::after {
 
 #galeria article {
     min-width: 0;
-    overflow: hidden; /* border radius superiores, por la imagen*/
+    overflow: hidden;   /*border radius superiores, por la imagen*/
     background-color: #ffffff;
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 10%);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #galeria article h2 {
@@ -110,12 +120,18 @@ h1::after {
     cursor: pointer;
 }
 
+#galeria article:hover h2::after {
+    width: 8.2rem;
+}
+
 #galeria article:hover img {
     transform: scale(1.06);
 }
 
 /*
-animaciones de entrada
+    animaciones de entrada, mención a herramientas:
+    https://front-end-tools.com/en/generateTransition/
+    https://webcode.tools/css-generator/keyframe-animation/
 */
 
 @keyframes fundido {
@@ -127,7 +143,6 @@ animaciones de entrada
         opacity: 1;
     }
 }
-
 
 @keyframes aparecer {
     from {
@@ -151,14 +166,6 @@ animaciones de entrada
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-header img {
-    animation: aparecerDesdeArriba 1.5s ease both;
-}
-
-h1 {
-    animation: fundido 2.5s ease both;
 }
 
 
@@ -202,19 +209,19 @@ footer p {
     margin: 0;
 }
 
-/* mediaquerys */ 
+/* mediaquerys */
 
 @media (min-width: 768px) {
     header img {
         height: 20rem;
     }
 
-    section {
-        padding: 3rem 1.5rem;
+    header h1 {
+        font-size: 2.25rem;
     }
 
-    h1 {
-        font-size: 2.25rem;
+    section {
+        padding: 3rem 1.5rem;
     }
 
     #galeria {
@@ -225,11 +232,16 @@ footer p {
     #galeria article img {
         height: 15rem;
     }
+  
 }
 
 @media (min-width: 992px) {
     header img {
         height: 22rem;
+    }
+
+    header h1 {
+        font-size: 3rem;
     }
 
     #galeria {
@@ -240,6 +252,7 @@ footer p {
     #galeria article img {
         height: 13rem;
     }
+  
 }
 
 @media (min-width: 1200px) {
